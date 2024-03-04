@@ -26,10 +26,10 @@ jobs:
         id: meta
         uses: docker/metadata-action@v3
         with:
-          images: ${{ secrets.DOCKER_REGISTRY }}/${{ github.event.repository.name }}
+          images: ${{ secrets.DOCKER_REGISTRY }}/${{ github.repository }}
           tags: |
-            type=sha,prefix=${{ github.event.repository.name }},format=long
-            type=ref,event=branch,prefix=latest
+            type=sha,format=short
+            latest
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v2
